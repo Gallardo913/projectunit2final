@@ -4,6 +4,7 @@ const express = require("express")
 const morgan = require("morgan")
 const methodOverride = require("method-override")
 const mongoose = require("mongoose")
+const path = require('path')
 
 //create express app
 const app = express()
@@ -19,9 +20,17 @@ mongoose.connection
 
 //register middleware
 app.use(morgan("dev"))
-app.use("/static", express.static("public"))
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride("_method"))
+app.use(bodyparser.urlencoded({extended:true}))
+
+//setting view engine
+app.set("view engine", "ejs")
+
+//load assets
+app.use('/css', express.static(path.resolve(__dirname, "assets/css")))
+app.use('/img', express.static(path.resolve(__dirname, "assets/img")))
+app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
 
 //route and routers
 app.get("/", (req, res) => {
