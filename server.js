@@ -22,7 +22,7 @@ mongoose.connection
 app.use(morgan("dev"))
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride("_method"))
-app.use(bodyparser.urlencoded({extended:true}))
+// app.use(bodyparser.urlencoded({extended:true}))
 
 //setting view engine
 app.set("view engine", "ejs")
@@ -34,7 +34,7 @@ app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
 
 //route and routers
 app.get("/", (req, res) => {
-    res.send("Yep, it's working")
+    res.render('index');
 })
 
 //start the server
