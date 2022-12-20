@@ -37,6 +37,15 @@ app.get("/", (req, res) => {
     res.render('index');
 })
 
+app.get("/add-user", (req, res) => {
+    res.render('add_user');
+})
+
+app.get("/update-user", (req, res) => {
+    res.render('update_user');
+})
+
+
 //start the server
 const PORT= process.env.PORT || 3000
 app.listen(PORT, () => console.log(`Listening to this port ${PORT}`))
